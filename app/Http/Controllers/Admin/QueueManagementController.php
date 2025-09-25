@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Queue;
+use App\Models\QueueType;
 
 class QueueManagementController extends Controller
 {
@@ -43,4 +45,23 @@ class QueueManagementController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    // Update QueueManagementController for API endpoints
+// Add these methods to app/Http/Controllers/Admin/QueueManagementController.php
+
+public function resetDaily()
+{
+    try {
+        // You might want to archive or soft delete instead of hard delete
+        Queue::whereDate('created_at', today())->delete();
+
+        return response()->json(['success' => true, 'message' => 'Antrian harian berhasil direset']);
+    } catch (\Exception $e) {
+        return response()->json(['success' => false, 'message' => 'Gagal reset antrian'], 500);
+    }
+}
+
+
+
+
 }

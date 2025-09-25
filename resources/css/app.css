@@ -1,3 +1,111 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-feature-settings: 'kern' 1, 'liga' 1;
+    }
+}
+
+@layer components {
+    .btn-primary {
+        @apply bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors;
+    }
+
+    .btn-secondary {
+        @apply bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors;
+    }
+
+    .card {
+        @apply bg-white rounded-xl shadow-lg overflow-hidden;
+    }
+
+    .queue-number {
+        @apply text-4xl font-bold text-center p-6 rounded-xl;
+    }
+
+    .status-badge {
+        @apply px-3 py-1 rounded-full text-xs font-medium;
+    }
+
+    .status-waiting {
+        @apply bg-blue-100 text-blue-800;
+    }
+
+    .status-called {
+        @apply bg-yellow-100 text-yellow-800;
+    }
+
+    .status-served {
+        @apply bg-green-100 text-green-800;
+    }
+
+    .status-cancelled {
+        @apply bg-red-100 text-red-800;
+    }
+
+    /* Print styles */
+    @media print {
+        .no-print {
+            display: none !important;
+        }
+
+        body {
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .print-page-break {
+            page-break-before: always;
+        }
+    }
+
+    /* Custom scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 3px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
+}
+
+@layer utilities {
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
+
+
+

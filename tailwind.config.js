@@ -1,3 +1,4 @@
+// tailwind.config.js
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
@@ -13,6 +14,10 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
+            animation: {
+                'pulse-slow': 'pulse 3s ease-in-out infinite',
+                'bounce-slow': 'bounce 2s ease-in-out infinite',
             },
         },
     },

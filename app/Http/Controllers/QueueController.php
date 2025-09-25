@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Queue;
+use App\Models\QueueType;
 class QueueController extends Controller
 {
     public function index()

@@ -10,12 +10,22 @@ class AdminMiddleware
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
+        // Check if user is authenticated
+        if (!auth()->check()) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Authentication required'], 401);
+            }
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu');
+        }
+
+        // Check if user has admin role
+        if (!auth()->user()->isAdmin()) {
+            if ($request->expectsJson()) {
+                return response()->json(['message' => 'Admin access required'], 403);
+            }
             abort(403, 'Access denied. Admin role required.');
         }
 
